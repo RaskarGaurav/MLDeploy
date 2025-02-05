@@ -3,7 +3,7 @@
 <!--From https://codepen.io/frytyler/pen/EGdtg-->
 <head>
   <meta charset="UTF-8">
-  <title>ML API</title>
+  <title>ML Deploy</title>
   <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
@@ -13,18 +13,442 @@
 
 <body>
  <div class="login">
-	<h1>Predict Price for given House Details</h1>
-
+	<h1>Fraudulent Prediction for Credit Card Transactions</h1>
      <!-- Main Input For Receiving Query to our ML -->
-    <form action="{{ url_for('predict')}}"method="post">
-    	<input type="text" name="sqft_living15" placeholder="Sqft Living" required="required" />
-        <input type="text" name="sqft_above" placeholder="Sqft Above" required="required" />
-        <input type="text" name="grade" placeholder="Grade" required="required" />
-        <input type="text" name="condition" placeholder="Condition" required="required" />
-        <input type="text" name="bedrooms" placeholder="No of bedrooms" required="required" />
-		
-        <button type="submit" class="btn btn-primary btn-block btn-large">Predict House Price</button>
-    </form>
+    <form action="{{ url_for('predict') }}" method="post">
+	<label for="trans_date_trans_time">Trasaction Date & Time {eg. "2020-06-21 00:36:58"}: </label>
+    <input type="text" name="trans_date_trans_time" placeholder="Enter as given format" required />
+    <br/>
+	<label for="merchant">Merchant:</label>
+<select name="merchant" required>
+  <option value="other">Other</option>
+  <option value="fraud_Kilback LLC">fraud_Kilback LLC</option>
+  <option value="fraud_Cormier LLC">fraud_Cormier LLC</option>
+  <option value="fraud_Schumm PLC">fraud_Schumm PLC</option>
+  <option value="fraud_Boyer PLC">fraud_Boyer PLC</option>
+  <option value="fraud_Kuhn LLC">fraud_Kuhn LLC</option>
+  <option value="fraud_Dickinson Ltd">fraud_Dickinson Ltd</option>
+  <option value="fraud_Cummerata-Jones">fraud_Cummerata-Jones</option>
+  <option value="fraud_Connelly, Reichert and Fritsch">fraud_Connelly, Reichert and Fritsch</option>
+  <option value="fraud_Bartoletti-Wunsch">fraud_Bartoletti-Wunsch</option>
+  <option value="fraud_Jenkins, Hauck and Friesen">fraud_Jenkins, Hauck and Friesen</option>
+  <option value="fraud_Kutch LLC">fraud_Kutch LLC</option>
+  <option value="fraud_Olson, Becker and Koch">fraud_Olson, Becker and Koch</option>
+  <option value="fraud_Rodriguez Group">fraud_Rodriguez Group</option>
+  <option value="fraud_Prohaska-Murray">fraud_Prohaska-Murray</option>
+  <option value="fraud_Berge LLC">fraud_Berge LLC</option>
+  <option value="fraud_Kling Inc">fraud_Kling Inc</option>
+  <option value="fraud_Stroman, Hudson and Erdman">fraud_Stroman, Hudson and Erdman</option>
+  <option value="fraud_Friesen-Stamm">fraud_Friesen-Stamm</option>
+  <option value="fraud_Erdman-Kertzmann">fraud_Erdman-Kertzmann</option>
+  <option value="fraud_Corwin-Collins">fraud_Corwin-Collins</option>
+  <option value="fraud_Christiansen, Goyette and Schamberger">fraud_Christiansen, Goyette and Schamberger</option>
+  <option value="fraud_Brekke and Sons">fraud_Brekke and Sons</option>
+  <option value="fraud_Tillman, Dickinson and Labadie">fraud_Tillman, Dickinson and Labadie</option>
+  <option value="fraud_Huels-Hahn">fraud_Huels-Hahn</option>
+  <option value="fraud_Mraz-Herzog">fraud_Mraz-Herzog</option>
+  <option value="fraud_Bins-Rice">fraud_Bins-Rice</option>
+  <option value="fraud_Parisian and Sons">fraud_Parisian and Sons</option>
+  <option value="fraud_Greenholt, Jacobi and Gleason">fraud_Greenholt, Jacobi and Gleason</option>
+  <option value="fraud_Eichmann, Bogan and Rodriguez">fraud_Eichmann, Bogan and Rodriguez</option>
+  <option value="fraud_Kuvalis Ltd">fraud_Kuvalis Ltd</option>
+  <option value="fraud_Torp-Labadie">fraud_Torp-Labadie</option>
+  <option value="fraud_Schmitt Inc">fraud_Schmitt Inc</option>
+  <option value="fraud_Raynor, Reinger and Hagenes">fraud_Raynor, Reinger and Hagenes</option>
+  <option value="fraud_Emard Inc">fraud_Emard Inc</option>
+  <option value="fraud_Streich, Hansen and Veum">fraud_Streich, Hansen and Veum</option>
+  <option value="fraud_Bernhard Inc">fraud_Bernhard Inc</option>
+  <option value="fraud_Schaefer, Maggio and Daugherty">fraud_Schaefer, Maggio and Daugherty</option>
+  <option value="fraud_Ledner-Pfannerstill">fraud_Ledner-Pfannerstill</option>
+  <option value="fraud_Luettgen PLC">fraud_Luettgen PLC</option>
+  <option value="fraud_Lind, Huel and McClure">fraud_Lind, Huel and McClure</option>
+  <option value="fraud_Sporer Inc">fraud_Sporer Inc</option>
+  <option value="fraud_Huels-Nolan">fraud_Huels-Nolan</option>
+  <option value="fraud_Robel, Cummerata and Prosacco">fraud_Robel, Cummerata and Prosacco</option>
+  <option value="fraud_Koss and Sons">fraud_Koss and Sons</option>
+  <option value="fraud_Conroy-Cruickshank">fraud_Conroy-Cruickshank</option>
+  <option value="fraud_Reilly, Heaney and Cole">fraud_Reilly, Heaney and Cole</option>
+  <option value="fraud_Cummings LLC">fraud_Cummings LLC</option>
+  <option value="fraud_Zieme, Bode and Dooley">fraud_Zieme, Bode and Dooley</option>
+  <option value="fraud_Schaefer, McGlynn and Bosco">fraud_Schaefer, McGlynn and Bosco</option>
+  <option value="fraud_Kutch, Hermiston and Farrell">fraud_Kutch, Hermiston and Farrell</option>
+  <option value="fraud_O'Reilly, Mohr and Purdy">fraud_O'Reilly, Mohr and Purdy</option>
+  <option value="fraud_Doyle Ltd">fraud_Doyle Ltd</option>
+  <option value="fraud_Eichmann-Kilback">fraud_Eichmann-Kilback</option>
+  <option value="fraud_Marks Inc">fraud_Marks Inc</option>
+  <option value="fraud_Harris Inc">fraud_Harris Inc</option>
+  <option value="fraud_Pacocha-O'Reilly">fraud_Pacocha-O'Reilly</option>
+  <option value="fraud_Bradtke PLC">fraud_Bradtke PLC</option>
+  <option value="fraud_Harber Inc">fraud_Harber Inc</option>
+  <option value="fraud_Denesik, Powlowski and Pouros">fraud_Denesik, Powlowski and Pouros</option>
+  <option value="fraud_Terry Ltd">fraud_Terry Ltd</option>
+  <option value="fraud_Schumm, Bauch and Ondricka">fraud_Schumm, Bauch and Ondricka</option>
+  <option value="fraud_Hackett-Lueilwitz">fraud_Hackett-Lueilwitz</option>
+  <option value="fraud_Medhurst Inc">fraud_Medhurst Inc</option>
+  <option value="fraud_Kiehn-Emmerich">fraud_Kiehn-Emmerich</option>
+  <option value="fraud_White and Sons">fraud_White and Sons</option>
+  <option value="fraud_Rutherford-Mertz">fraud_Rutherford-Mertz</option>
+  <option value="fraud_Bauch-Raynor">fraud_Bauch-Raynor</option>
+  <option value="fraud_Connelly-Carter">fraud_Connelly-Carter</option>
+  <option value="fraud_Schiller, Blanda and Johnson">fraud_Schiller, Blanda and Johnson</option>
+  <option value="fraud_Quitzon-Goyette">fraud_Quitzon-Goyette</option>
+  <option value="fraud_Goodwin-Nitzsche">fraud_Goodwin-Nitzsche</option>
+  <option value="fraud_Heller-Langosh">fraud_Heller-Langosh</option>
+  <option value="fraud_Murray-Smitham">fraud_Murray-Smitham</option>
+  <option value="fraud_Pollich LLC">fraud_Pollich LLC</option>
+  <option value="fraud_Raynor, Feest and Miller">fraud_Raynor, Feest and Miller</option>
+  <option value="fraud_O'Connell, Botsford and Hand">fraud_O'Connell, Botsford and Hand</option>
+  <option value="fraud_McDermott-Weimann">fraud_McDermott-Weimann</option>
+  <option value="fraud_Gulgowski LLC">fraud_Gulgowski LLC</option>
+  <option value="fraud_Gutmann, McLaughlin and Wiza">fraud_Gutmann, McLaughlin and Wiza</option>
+  <option value="fraud_Rau and Sons">fraud_Rau and Sons</option>
+  <option value="fraud_Lockman Ltd">fraud_Lockman Ltd</option>
+  <option value="fraud_Champlin-Casper">fraud_Champlin-Casper</option>
+  <option value="fraud_Osinski, Ledner and Leuschke">fraud_Osinski, Ledner and Leuschke</option>
+  <option value="fraud_DuBuque LLC">fraud_DuBuque LLC</option>
+  <option value="fraud_Gislason Group">fraud_Gislason Group</option>
+  <option value="fraud_Friesen-D'Amore">fraud_Friesen-D'Amore</option>
+  <option value="fraud_Renner Ltd">fraud_Renner Ltd</option>
+  <option value="fraud_Schamberger-O'Keefe">fraud_Schamberger-O'Keefe</option>
+  <option value="fraud_Cole PLC">fraud_Cole PLC</option>
+  <option value="fraud_Altenwerth-Kilback">fraud_Altenwerth-Kilback</option>
+  <option value="fraud_Lockman, West and Runte">fraud_Lockman, West and Runte</option>
+  <option value="fraud_Kovacek, Dibbert and Ondricka">fraud_Kovacek, Dibbert and Ondricka</option>
+  <option value="fraud_Hudson-Ratke">fraud_Hudson-Ratke</option>
+  <option value="fraud_Stark-Koss">fraud_Stark-Koss</option>
+  <option value="fraud_Casper, Hand and Zulauf">fraud_Casper, Hand and Zulauf</option>
+  <option value="fraud_Deckow-O'Conner">fraud_Deckow-O'Conner</option>
+  <option value="fraud_Lynch-Wisozk">fraud_Lynch-Wisozk</option>
+  <option value="fraud_Schoen, Kuphal and Nitzsche">fraud_Schoen, Kuphal and Nitzsche</option>
+  <option value="fraud_Goldner, Kovacek and Abbott">fraud_Goldner, Kovacek and Abbott</option>
+  <option value="fraud_Vandervort-Funk">fraud_Vandervort-Funk</option>
+  <option value="fraud_Botsford PLC">fraud_Botsford PLC</option>
+</select>
+
+
+    <br/>
+	<label for="category">Category:</label>
+<select name="category" required>
+    <option value="other">Other</option>
+    <option value="misc_net">misc_net</option>
+    <option value="grocery_pos">grocery_pos</option>
+    <option value="entertainment">entertainment</option>
+    <option value="gas_transport">gas_transport</option>
+    <option value="misc_pos">misc_pos</option>
+    <option value="grocery_net">grocery_net</option>
+    <option value="shopping_net">shopping_net</option>
+    <option value="shopping_pos">shopping_pos</option>
+    <option value="food_dining">food_dining</option>
+    <option value="personal_care">personal_care</option>
+    <option value="health_fitness">health_fitness</option>
+    <option value="travel">travel</option>
+    <option value="kids_pets">kids_pets</option>
+    <option value="home">home</option>
+</select>
+    <br/>
+	<label for="amt">Amount(USD '$'): </label>
+    <input type="text" name="amt" placeholder="Enter Decimal" required />
+    <br/>
+	<label for="gender">Gender:</label>
+<select name="gender" required>
+    <option value="other">Other</option>
+    <option value="F">Female</option>
+    <option value="M">Male</option>
+</select>
+    <br/>
+	<label for="state">State:</label>
+<select name="state" required>
+    <option value="NC">North Carolina</option>
+    <option value="WA">Washington</option>
+    <option value="ID">Idaho</option>
+    <option value="MT">Montana</option>
+    <option value="VA">Virginia</option>
+    <option value="PA">Pennsylvania</option>
+    <option value="KS">Kansas</option>
+    <option value="TN">Tennessee</option>
+    <option value="IA">Iowa</option>
+    <option value="WV">West Virginia</option>
+    <option value="FL">Florida</option>
+    <option value="CA">California</option>
+    <option value="NM">New Mexico</option>
+    <option value="NJ">New Jersey</option>
+    <option value="OK">Oklahoma</option>
+    <option value="IN">Indiana</option>
+    <option value="MA">Massachusetts</option>
+    <option value="TX">Texas</option>
+    <option value="WI">Wisconsin</option>
+    <option value="MI">Michigan</option>
+    <option value="WY">Wyoming</option>
+    <option value="HI">Hawaii</option>
+    <option value="NE">Nebraska</option>
+    <option value="OR">Oregon</option>
+    <option value="LA">Louisiana</option>
+    <option value="DC">District of Columbia</option>
+    <option value="KY">Kentucky</option>
+    <option value="NY">New York</option>
+    <option value="MS">Mississippi</option>
+    <option value="UT">Utah</option>
+    <option value="AL">Alabama</option>
+    <option value="AR">Arkansas</option>
+    <option value="MD">Maryland</option>
+    <option value="GA">Georgia</option>
+    <option value="ME">Maine</option>
+    <option value="AZ">Arizona</option>
+    <option value="MN">Minnesota</option>
+    <option value="OH">Ohio</option>
+    <option value="CO">Colorado</option>
+    <option value="VT">Vermont</option>
+    <option value="MO">Missouri</option>
+    <option value="SC">South Carolina</option>
+    <option value="NV">Nevada</option>
+    <option value="IL">Illinois</option>
+    <option value="NH">New Hampshire</option>
+    <option value="SD">South Dakota</option>
+    <option value="AK">Alaska</option>
+    <option value="ND">North Dakota</option>
+    <option value="CT">Connecticut</option>
+    <option value="RI">Rhode Island</option>
+    <option value="DE">Delaware</option>
+</select>
+    <br/>
+	<label for="zip">ZIP Code:</label>
+    <input type="text" name="zip" placeholder="Enter Number" required />
+    <br/>
+	<label for="lat">Latitude:</label>
+    <input type="text" name="lat" placeholder="Enter Decimal" required />
+    <br/>
+	<label for="long">Longitude:</label>
+    <input type="text" name="long" placeholder="Enter Decimal" required />
+    <br/>
+	<label for="city_pop">City Population:</label>
+    <input type="text" name="city_pop" placeholder="Enter Number" required />
+    <br/>
+	<label for="job">Job:</label>
+<select name="job" required>
+  <option value="other">Other</option>
+  <option value="Exhibition designer">Exhibition designer</option>
+  <option value="Designer, ceramics/pottery">Designer, ceramics/pottery</option>
+  <option value="Systems developer">Systems developer</option>
+  <option value="Financial adviser">Financial adviser</option>
+  <option value="Naval architect">Naval architect</option>
+  <option value="Film/video editor">Film/video editor</option>
+  <option value="Environmental consultant">Environmental consultant</option>
+  <option value="Sub">Sub</option>
+  <option value="Copywriter, advertising">Copywriter, advertising</option>
+  <option value="Materials engineer">Materials engineer</option>
+  <option value="Chartered public finance accountant">Chartered public finance accountant</option>
+  <option value="Comptroller">Comptroller</option>
+  <option value="Agricultural consultant">Agricultural consultant</option>
+  <option value="Chief Executive Officer">Chief Executive Officer</option>
+  <option value="Magazine features editor">Magazine features editor</option>
+  <option value="Podiatrist">Podiatrist</option>
+  <option value="Mining engineer">Mining engineer</option>
+  <option value="Scientist, audiological">Scientist, audiological</option>
+  <option value="Surveyor, land/geomatics">Surveyor, land/geomatics</option>
+  <option value="Audiological scientist">Audiological scientist</option>
+  <option value="Prison officer">Prison officer</option>
+  <option value="Energy engineer">Energy engineer</option>
+  <option value="Counsellor">Counsellor</option>
+  <option value="Secondary school teacher">Secondary school teacher</option>
+  <option value="Land/geomatics surveyor">Land/geomatics surveyor</option>
+  <option value="Building surveyor">Building surveyor</option>
+  <option value="Clothing/textile technologist">Clothing/textile technologist</option>
+  <option value="IT trainer">IT trainer</option>
+  <option value="Musician">Musician</option>
+  <option value="Pensions consultant">Pensions consultant</option>
+  <option value="Barrister">Barrister</option>
+  <option value="Mechanical engineer">Mechanical engineer</option>
+  <option value="Engineer, automotive">Engineer, automotive</option>
+  <option value="Psychotherapist, child">Psychotherapist, child</option>
+  <option value="Quantity surveyor">Quantity surveyor</option>
+  <option value="Scientist, marine">Scientist, marine</option>
+  <option value="Psychologist, forensic">Psychologist, forensic</option>
+  <option value="Early years teacher">Early years teacher</option>
+  <option value="Librarian, academic">Librarian, academic</option>
+  <option value="Scientist, research (maths)">Scientist, research (maths)</option>
+  <option value="Chemical engineer">Chemical engineer</option>
+  <option value="Claims inspector/assessor">Claims inspector/assessor</option>
+  <option value="Insurance underwriter">Insurance underwriter</option>
+  <option value="Firefighter">Firefighter</option>
+  <option value="Chief Strategy Officer">Chief Strategy Officer</option>
+  <option value="Science writer">Science writer</option>
+  <option value="Accounting technician">Accounting technician</option>
+  <option value="Financial trader">Financial trader</option>
+  <option value="Race relations officer">Race relations officer</option>
+  <option value="Drilling engineer">Drilling engineer</option>
+  <option value="Engineer, control and instrumentation">Engineer, control and instrumentation</option>
+  <option value="Radio broadcast assistant">Radio broadcast assistant</option>
+  <option value="Research scientist (physical sciences)">Research scientist (physical sciences)</option>
+  <option value="Social researcher">Social researcher</option>
+  <option value="Radio producer">Radio producer</option>
+  <option value="Paramedic">Paramedic</option>
+  <option value="Toxicologist">Toxicologist</option>
+  <option value="Fine artist">Fine artist</option>
+  <option value="Electrical engineer">Electrical engineer</option>
+  <option value="Engineer, production">Engineer, production</option>
+  <option value="Engineer, biomedical">Engineer, biomedical</option>
+  <option value="Teacher, special educational needs">Teacher, special educational needs</option>
+  <option value="Technical brewer">Technical brewer</option>
+  <option value="Trading standards officer">Trading standards officer</option>
+  <option value="Dealer">Dealer</option>
+  <option value="Librarian, public">Librarian, public</option>
+  <option value="Development worker, community">Development worker, community</option>
+  <option value="Medical sales representative">Medical sales representative</option>
+  <option value="Probation officer">Probation officer</option>
+  <option value="Senior tax professional/tax inspector">Senior tax professional/tax inspector</option>
+  <option value="Curator">Curator</option>
+  <option value="Geoscientist">Geoscientist</option>
+  <option value="Surgeon">Surgeon</option>
+  <option value="Press photographer">Press photographer</option>
+  <option value="Facilities manager">Facilities manager</option>
+  <option value="Engineering geologist">Engineering geologist</option>
+  <option value="Historic buildings inspector/conservation officer">Historic buildings inspector/conservation officer</option>
+  <option value="Radiographer, therapeutic">Radiographer, therapeutic</option>
+  <option value="Chartered loss adjuster">Chartered loss adjuster</option>
+  <option value="Designer, industrial/product">Designer, industrial/product</option>
+  <option value="Physiotherapist">Physiotherapist</option>
+  <option value="Make">Make</option>
+  <option value="Multimedia programmer">Multimedia programmer</option>
+  <option value="Television production assistant">Television production assistant</option>
+  <option value="Dispensing optician">Dispensing optician</option>
+  <option value="Scientist, biomedical">Scientist, biomedical</option>
+  <option value="Operations geologist">Operations geologist</option>
+  <option value="Herbalist">Herbalist</option>
+  <option value="Hospital doctor">Hospital doctor</option>
+  <option value="Child psychotherapist">Child psychotherapist</option>
+  <option value="Applications developer">Applications developer</option>
+  <option value="Travel agency manager">Travel agency manager</option>
+  <option value="Psychologist, counselling">Psychologist, counselling</option>
+  <option value="Chiropodist">Chiropodist</option>
+  <option value="Petroleum engineer">Petroleum engineer</option>
+  <option value="Cytogeneticist">Cytogeneticist</option>
+  <option value="Buyer, industrial">Buyer, industrial</option>
+  <option value="Heritage manager">Heritage manager</option>
+  <option value="Archaeologist">Archaeologist</option>
+  <option value="Structural engineer">Structural engineer</option>
+  <option value="Special educational needs teacher">Special educational needs teacher</option>
+  <option value="Editor, commissioning">Editor, commissioning</option>
+  <option value="Lecturer, further education">Lecturer, further education</option>
+  <option value="Forensic psychologist">Forensic psychologist</option>
+  <option value="Private music teacher">Private music teacher</option>
+  <option value="Engineer, mining">Engineer, mining</option>
+  <option value="Amenity horticulturist">Amenity horticulturist</option>
+  <option value="Insurance risk surveyor">Insurance risk surveyor</option>
+  <option value="Research officer, trade union">Research officer, trade union</option>
+  <option value="Water engineer">Water engineer</option>
+  <option value="Learning disability nurse">Learning disability nurse</option>
+  <option value="Sales professional, IT">Sales professional, IT</option>
+  <option value="Occupational psychologist">Occupational psychologist</option>
+  <option value="Exercise physiologist">Exercise physiologist</option>
+  <option value="Call centre manager">Call centre manager</option>
+  <option value="Tree surgeon">Tree surgeon</option>
+  <option value="Fisheries officer">Fisheries officer</option>
+  <option value="Public relations account executive">Public relations account executive</option>
+  <option value="Television floor manager">Television floor manager</option>
+  <option value="Advertising account planner">Advertising account planner</option>
+  <option value="Television/film/video producer">Television/film/video producer</option>
+  <option value="Electronics engineer">Electronics engineer</option>
+  <option value="Administrator">Administrator</option>
+  <option value="Physicist, medical">Physicist, medical</option>
+  <option value="Camera operator">Camera operator</option>
+  <option value="Tax inspector">Tax inspector</option>
+  <option value="Barrister's clerk">Barrister's clerk</option>
+  <option value="Manufacturing engineer">Manufacturing engineer</option>
+  <option value="Therapist, occupational">Therapist, occupational</option>
+  <option value="Gaffer">Gaffer</option>
+  <option value="Press sub">Press sub</option>
+  <option value="Phytotherapist">Phytotherapist</option>
+  <option value="Site engineer">Site engineer</option>
+  <option value="Immunologist">Immunologist</option>
+  <option value="Commercial/residential surveyor">Commercial/residential surveyor</option>
+  <option value="Development worker, international aid">Development worker, international aid</option>
+  <option value="Occupational hygienist">Occupational hygienist</option>
+  <option value="Colour technologist">Colour technologist</option>
+  <option value="Journalist, newspaper">Journalist, newspaper</option>
+  <option value="Careers information officer">Careers information officer</option>
+  <option value="English as a second language teacher">English as a second language teacher</option>
+  <option value="Trade mark attorney">Trade mark attorney</option>
+  <option value="Tourist information centre manager">Tourist information centre manager</option>
+  <option value="Chief Operating Officer">Chief Operating Officer</option>
+  <option value="Production manager">Production manager</option>
+  <option value="Engineer, electronics">Engineer, electronics</option>
+  <option value="Radiographer, diagnostic">Radiographer, diagnostic</option>
+  <option value="Leisure centre manager">Leisure centre manager</option>
+  <option value="Commercial horticulturist">Commercial horticulturist</option>
+  <option value="Systems analyst">Systems analyst</option>
+  <option value="Counselling psychologist">Counselling psychologist</option>
+  <option value="Exhibitions officer, museum/gallery">Exhibitions officer, museum/gallery</option>
+  <option value="Metallurgist">Metallurgist</option>
+  <option value="Music tutor">Music tutor</option>
+  <option value="Retail merchandiser">Retail merchandiser</option>
+  <option value="Educational psychologist">Educational psychologist</option>
+  <option value="Programme researcher, broadcasting/film/video">Programme researcher, broadcasting/film/video</option>
+  <option value="Energy manager">Energy manager</option>
+  <option value="Research officer, political party">Research officer, political party</option>
+  <option value="Broadcast presenter">Broadcast presenter</option>
+  <option value="Risk analyst">Risk analyst</option>
+  <option value="Statistician">Statistician</option>
+  <option value="Further education lecturer">Further education lecturer</option>
+  <option value="Health and safety adviser">Health and safety adviser</option>
+  <option value="Therapist, sports">Therapist, sports</option>
+  <option value="Advice worker">Advice worker</option>
+  <option value="Soil scientist">Soil scientist</option>
+  <option value="Designer, furniture">Designer, furniture</option>
+  <option value="Biomedical scientist">Biomedical scientist</option>
+  <option value="Paediatric nurse">Paediatric nurse</option>
+  <option value="Media buyer">Media buyer</option>
+  <option value="Maintenance engineer">Maintenance engineer</option>
+  <option value="Geochemist">Geochemist</option>
+  <option value="Futures trader">Futures trader</option>
+  <option value="Tourism officer">Tourism officer</option>
+  <option value="Ceramics designer">Ceramics designer</option>
+  <option value="Optician, dispensing">Optician, dispensing</option>
+  <option value="Equality and diversity officer">Equality and diversity officer</option>
+  <option value="Teacher, early years/pre">Teacher, early years/pre</option>
+  <option value="Fitness centre manager">Fitness centre manager</option>
+  <option value="Bookseller">Bookseller</option>
+  <option value="Chief Financial Officer">Chief Financial Officer</option>
+  <option value="Designer, exhibition/display">Designer, exhibition/display</option>
+  <option value="Building control surveyor">Building control surveyor</option>
+  <option value="Investment analyst">Investment analyst</option>
+  <option value="Teacher, secondary school">Teacher, secondary school</option>
+  <option value="Human resources officer">Human resources officer</option>
+  <option value="Patent attorney">Patent attorney</option>
+  <option value="Programmer, multimedia">Programmer, multimedia</option>
+  <option value="Insurance broker">Insurance broker</option>
+  <option value="Warden/ranger">Warden/ranger</option>
+  <option value="Education officer, museum">Education officer, museum</option>
+  <option value="Designer, jewellery">Designer, jewellery</option>
+  <option value="Wellsite geologist">Wellsite geologist</option>
+  <option value="Operational researcher">Operational researcher</option>
+  <option value="Arboriculturist">Arboriculturist</option>
+  <option value="Police officer">Police officer</option>
+  <option value="Land">Land</option>
+  <option value="Doctor, general practice">Doctor, general practice</option>
+  <option value="Nurse, children's">Nurse, children's</option>
+  <option value="Waste management officer">Waste management officer</option>
+</select>
+
+
+    <br/>
+	<label for="dob">Date of Birth {eg. "1986-03-28"}:</label>
+    <input type="text" name="dob" placeholder="Enter as given format" required />
+    <br/>
+	<label for="merch_lat">Merchant Latitude:</label>
+    <input type="text" name="merch_lat" placeholder="Enter Decimal" required />
+    <br/>
+	<label for="merch_long">Merchant Longitude:</label>
+    <input type="text" name="merch_long" placeholder="Enter Decimal" required />
+    <br/>
+	<label for="merch_zipcode">Merchant ZIP Code:</label>
+    <input type="text" name="merch_zipcode" placeholder="Enter Number" />
+    <br/>
+	<br/>
+	<label for="trans_count_per_day">Total Transactions in a Day:</label>
+    <input type="text" name="trans_count_per_day" placeholder="Enter Number" />
+    <br/>
+    <button type="submit" class="btn btn-primary btn-block btn-large">Check for Anomaly</button>
+</form>
 
    <br>
    <br>
