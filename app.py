@@ -24,5 +24,5 @@ def predict():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0",port=9000) # Remote Server
-    #app.run(host="127.0.0.1",port=9000) # local machine
+    app.run() # Remote Server
+    #app.run(host="127.0.0.1",port=10000) # local machine
