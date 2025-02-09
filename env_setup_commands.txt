@@ -1,4 +1,4 @@
-### EC2 Setup (AWS)
+### Linux VM Setup
 ########## Libraries to be setup #######
 sudo apt-get update
 sudo apt-get install python3

@@ -4,10 +4,10 @@ import pandas as pd
 from scipy.sparse import hstack,csr_matrix
 import numpy
 
-transFormer = joblib.load(open('PowerTransform_StdScaling_model.pkl', 'rb'))
-enCoder = joblib.load(open('oneHotEncoder_model.pkl', 'rb'))
-selectFeatures = joblib.load(open('feature_selection_model.pkl', 'rb'))
-predmodel = joblib.load(open('xgBoost_model.pkl', 'rb'))
+transFormer = joblib.load(open('Models/PowerTransform_StdScaling_model.pkl', 'rb'))
+enCoder = joblib.load(open('Models/oneHotEncoder_model.pkl', 'rb'))
+selectFeatures = joblib.load(open('Models/feature_selection_model.pkl', 'rb'))
+predmodel = joblib.load(open('Models/xgBoost_model.pkl', 'rb'))
 
 def haversine(lat1, lon1, lat2, lon2):
     # Convert degrees to radians
@@ -27,6 +27,7 @@ def outRemove(x):
     else: return x
 
 def transForm(df):
+    df = df.copy()
     df['trans_date_trans_time'] = pd.to_datetime(df['trans_date_trans_time'])
     df['amt'] = df['amt'].astype("float64")
     df['zip'] = df['zip'].astype("int64")
@@ -87,6 +88,6 @@ def transForm(df):
     #Feature Selection
     df = selectFeatures.transform(df)
     
-    prob = predmodel.predict_proba(df)[:, 1] >= 0.5
+    prob = predmodel.predict_proba(df)[0][1]
     
-    return prob
+    return float(prob)
